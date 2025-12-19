@@ -1,13 +1,20 @@
-import { ClerkProvider } from "@clerk/clerk-react";
-import { UserButton } from "@clerk/nextjs";
+"use client";
+import { useStoreModal } from "@/hooks/UseStoreModal";
+import { useEffect } from "react";
 
 const SetupPage = () => {
+  const onOpen = useStoreModal((state) => state.onOpen);
+  const isOpen = useStoreModal((state) => state.isOpen);
+
+  useEffect(() => {
+    if (!isOpen) {
+      onOpen();
+    }
+  }, [isOpen, onOpen]);
+
   return (
     <main className="w-screen h-screen px-[5%]">
-      <header className="flex items-center justify-between py-4">
-        <h1 className="font-bold">LOGO</h1>
-        <UserButton />
-      </header>
+      <div></div>
     </main>
   );
 };

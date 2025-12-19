@@ -5,6 +5,7 @@ import {
   UserButton,
   SignInButton,
   SignUpButton,
+  ClerkProvider,
 } from "@clerk/nextjs";
 
 export const metadata = {
@@ -18,8 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      {children}
-    </div>
+    <ClerkProvider signInFallbackRedirectUrl="/" signUpFallbackRedirectUrl="/">
+      <div className="flex items-center justify-center min-h-screen">
+        {children}
+      </div>
+    </ClerkProvider>
   );
 }
